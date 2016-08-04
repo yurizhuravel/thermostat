@@ -22,26 +22,26 @@ describe('Thermostat', function() {
       });
 
       it('can not go lower than 10 degrees', function() {
-        thermostat.temperature = 10;
+        thermostat.temperature = thermostat.MIN_TEMPERATURE;
         expect(function(){ thermostat.pushDownButton(); }).toThrowError('Can not set the temperature below 10 degrees');
       });
 
       it('can be reset to default', function() {
         thermostat.temperature = 28;
         thermostat.resetTemperature();
-        expect(thermostat.temperature).toEqual(20);
+        expect(thermostat.temperature).toEqual(thermostat.DEFAULT_TEMPERATURE);
       });
 
       describe('Power save mode', function() {
 
       it('when ON, temperature can not exceed 25 degrees', function() {
-        thermostat.temperature = 25;
+        thermostat.temperature = thermostat.PSM_MAX_TEMPERATURE;
         expect(function(){ thermostat.pushUpButton(); }).toThrowError('Can not set the temperature above 25 degrees in power save mode');
       });
 
       it('when OFF, temperature can not exceed 32 degrees', function() {
         thermostat.powerSaveMode = false;
-        thermostat.temperature = 32;
+        thermostat.temperature = thermostat.MAX_TEMPERATURE;
         expect(function(){ thermostat.pushUpButton(); }).toThrowError('Can not set the temperature above 32');
       });
 
@@ -58,18 +58,18 @@ describe('Thermostat', function() {
 
   describe('Thermostat display', function() {
 
-    it('is GREEN when temperature is below 18', function() {
-      thermostat.temperature = 17;
+    it('is GREEN when power usage is low', function() {
+      thermostat.temperature = thermostat.LOW_POWER_USAGE;
       expect(thermostat.displayColour()).toEqual('green');
     });
 
-    it('is YELLOW when temperature is between 18 and 24', function() {
-      thermostat.temperature = 22;
+    it('is YELLOW when power usage is medium', function() {
+      thermostat.temperature = thermostat.DEFAULT_TEMPERATURE;
       expect(thermostat.displayColour()).toEqual('yellow');
     });
 
-    it('is RED when temperature is above 24', function() {
-      thermostat.temperature = 27;
+    it('is RED when power usage is high', function() {
+      thermostat.temperature = thermostat.HIGH_POWER_USAGE;
       expect(thermostat.displayColour()).toEqual('red');
     });
   });
