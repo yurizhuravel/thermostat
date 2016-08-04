@@ -30,7 +30,7 @@ describe('Thermostat', function() {
         thermostat.temperature = 28;
         thermostat.resetTemperature();
         expect(thermostat.temperature).toEqual(20);
-      })
+      });
 
       describe('Power save mode', function() {
 
@@ -54,24 +54,24 @@ describe('Thermostat', function() {
 
     });
 
-    describe('Thermostat display', function() {
+  });
 
-      it('is GREEN when temperature is below 18', function() {
-        thermostat.temperature = 17;
-        expect(thermostat.displayColour()).toEqual('green');
-      });
+  describe('Thermostat display', function() {
 
-      it('is YELLOW when temperature is between 18 and 24', function() {
-        thermostat.temperature = 22;
-        expect(thermostat.displayColour()).toEqual('yellow');
-      });
-
-      it('is RED when temperature is above 24', function() {
-        thermostat.temperature = 27;
-        expect(thermostat.displayColour()).toEqual('red');
-      });
+    it('is GREEN when temperature is below 18', function() {
+      thermostat.temperature = 17;
+      expect(thermostat.displayColour()).toEqual('green');
     });
 
+    it('is YELLOW when temperature is between 18 and 24', function() {
+      thermostat.temperature = 22;
+      expect(thermostat.displayColour()).toEqual('yellow');
+    });
+
+    it('is RED when temperature is above 24', function() {
+      thermostat.temperature = 27;
+      expect(thermostat.displayColour()).toEqual('red');
+    });
   });
 
 });
