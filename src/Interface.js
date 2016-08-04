@@ -2,16 +2,41 @@ $(document).ready(function() {
 
     var thermostat = new Thermostat();
     
+    function updateTemperature(){
     $('#temperature').text(thermostat.temperature);
+    $('#temperature').attr('class', thermostat.displayColour());
+    };
+    
+
+    function showPSM(){
+    $('#power-saving-status').text(thermostat.powerSaveStatus());
+    };
+    
+    updateTemperature();
+    showPSM();
+    
     
     $('#temperature-up').click(function() {
        thermostat.pushUpButton();
-        $('#temperature').text(thermostat.temperature);
+       updateTemperature();
     });
     
     $('#temperature-down').click(function() {
        thermostat.pushDownButton();
-        $('#temperature').text(thermostat.temperature);
+       updateTemperature();    
     });
-
+    
+    $('#temperature-reset').click(function(){
+        thermostat.resetTemperature();
+        updateTemperature();
+    });
+    
+    $('#powersaving-on-off').click(function(){
+        thermostat.togglePowerSave();
+        updateTemperature();
+        showPSM();
+    });
+    
+    
+        
 });

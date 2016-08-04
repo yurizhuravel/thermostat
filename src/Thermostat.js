@@ -30,15 +30,30 @@ Thermostat.prototype.pushDownButton = function () {
 };
 
 Thermostat.prototype.togglePowerSave = function () {
-  this.powerSaveMode ? this.powerSaveMode = false : this.powerSaveMode = true;
+  if(this.powerSaveMode){
+    this.powerSaveMode = false;
+    return;
+  }
+    this.powerSaveMode = true;
+    if(this.temperature > this.PSM_MAX_TEMPERATURE){
+     this.temperatue = this.PSM_MAX_TEMPERATURE;
+    }  
 };
 
-Thermostat.prototype.resetTemperature = function () {
+
+Thermostat.prototype.powerSaveStatus = function(){
+   if(this.powerSaveMode){
+       return "on";
+   }
+    return "off";
+};
+
+Thermostat.prototype.resetTemperature = functionx() {
   this.temperature = this.DEFAULT_TEMPERATURE;
 };
 
-Thermostat.prototype.displayColour = function () {
-  if(this.temperature <= LOW_POWER_USAGE) {
+Thermostat.prototype.displayColour = function() {
+  if(this.temperature <= this.LOW_POWER_USAGE) {
     return 'green';
   }
   if(this.temperature >= this.HIGH_POWER_USAGE) {
