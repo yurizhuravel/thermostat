@@ -11,17 +11,20 @@ function Thermostat() {
 
 Thermostat.prototype.pushUpButton = function () {
   if(this.temperature === this.PSM_MAX_TEMPERATURE && this.powerSaveMode) {
-    throw new Error ('Can not set the temperature above 25 degrees in power save mode');
+    alert('Can not set the temperature above 25 degrees in power save mode');
+    return;
   }
   if(this.temperature === this.MAX_TEMPERATURE && !this.powerSaveMode) {
-    throw new Error ('Can not set the temperature above 32');
+    alert('Can not set the temperature above 32');
+    return;
   }
   this.temperature += 1;
 };
 
 Thermostat.prototype.pushDownButton = function () {
   if(this.temperature === this.MIN_TEMPERATURE) {
-    throw new Error ('Can not set the temperature below 10 degrees');
+    alert('Can not set the temperature below 10 degrees');
+    return;
   }
   this.temperature -= 1;
 };
