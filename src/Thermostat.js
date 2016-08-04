@@ -37,7 +37,7 @@ Thermostat.prototype.togglePowerSave = function () {
     this.powerSaveMode = true;
     if(this.temperature > this.PSM_MAX_TEMPERATURE){
      this.temperatue = this.PSM_MAX_TEMPERATURE;
-    }  
+    }
 };
 
 
@@ -48,7 +48,7 @@ Thermostat.prototype.powerSaveStatus = function(){
     return "off";
 };
 
-Thermostat.prototype.resetTemperature = functionx() {
+Thermostat.prototype.resetTemperature = function() {
   this.temperature = this.DEFAULT_TEMPERATURE;
 };
 
