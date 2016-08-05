@@ -10,8 +10,9 @@ function Thermostat() {
 }
 
 Thermostat.prototype.pushUpButton = function () {
-  if(this.temperature === this.PSM_MAX_TEMPERATURE && this.powerSaveMode) {
+  if(this.temperature >= this.PSM_MAX_TEMPERATURE && this.powerSaveMode) {
     alert('Can not set the temperature above 25 degrees in power save mode');
+    this.temperature = this.PSM_MAX_TEMPERATURE;
     return;
   }
   if(this.temperature === this.MAX_TEMPERATURE && !this.powerSaveMode) {
